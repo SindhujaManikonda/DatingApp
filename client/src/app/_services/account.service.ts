@@ -15,7 +15,6 @@ export class AccountService {
   constructor(private http: HttpClient) { }
 
   login(model: any) {
-    //-------------- here ⇊⇊ ------
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
       map((user : User) => {
         if (user) {
@@ -25,6 +24,7 @@ export class AccountService {
       })
     )
   }
+
 
   register(model:any){
     return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
@@ -47,7 +47,7 @@ export class AccountService {
   logout()
   {
     localStorage.removeItem('user');
-    this.currentUserSource.next(undefined);
+    this.currentUserSource.next(null!);
   }
 
 }
